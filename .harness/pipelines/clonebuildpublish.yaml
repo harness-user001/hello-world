@@ -1,0 +1,62 @@
+pipeline:
+    name: clone-build-publish
+    identifier: clonebuildpublish
+    projectIdentifier: HarnessOrg001Proj001
+    orgIdentifier: HarnessOrg001
+    tags: {}
+    stages:
+        - stage:
+              name: build and push
+              identifier: build_and_push
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesHosted
+                      spec:
+                          identifier: k8s-hosted-infra
+                  execution:
+                      steps:
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: build and push
+                                identifier: build_and_push
+                                spec:
+                                    connectorRef: DockerHubConnector
+                                    repo: harnesstest/harness-repo
+                                    tags:
+                                        - ${artifact.buildNo}
+                                failureStrategies: []
+        - stage:
+              name: End of Pipeline
+              identifier: End_of_Pipeline
+              description: ""
+              type: Custom
+              spec:
+                  execution:
+                      steps:
+                          - step:
+                                type: ShellScript
+                                name: echo status
+                                identifier: echo_status
+                                spec:
+                                    shell: Bash
+                                    onDelegate: true
+                                    source:
+                                        type: Inline
+                                        spec:
+                                            script: echo "build is completed"
+                                    environmentVariables: []
+                                    outputVariables: []
+                                    executionTarget: {}
+                                    delegateSelectors:
+                                        - docker-delegate
+                                timeout: 10m
+                                failureStrategies: []
+              tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: GitHubConnector
+                repoName: hello-world
+                build: <+input>
