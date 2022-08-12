@@ -1,6 +1,6 @@
 inputSet:
   identifier: "main"
-  name: "Branch"
+  name: "sample"
   orgIdentifier: "HarnessOrg001"
   projectIdentifier: "HarnessOrg001Proj001"
   pipeline:
