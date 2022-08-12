@@ -60,3 +60,16 @@ pipeline:
                 connectorRef: GitHubConnector
                 repoName: hello-world
                 build: <+input>
+    notificationRules:
+        - name: Project001_Pipeline1
+          identifier: Project001_Pipeline1
+          pipelineEvents:
+              - type: AllEvents
+          notificationMethod:
+              type: Email
+              spec:
+                  userGroups:
+                      - account.DevelopementTeam
+                  recipients:
+                      - harness.git@gmail.com
+          enabled: true
