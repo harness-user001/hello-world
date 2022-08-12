@@ -1,0 +1,16 @@
+connector:
+  name: AWS-Connector
+  identifier: AWSConnector
+  description: ""
+  orgIdentifier: HarnessOrg001
+  projectIdentifier: HarnessOrg001Proj001
+  type: Aws
+  spec:
+    credential:
+      type: ManualConfig
+      spec:
+        accessKey: AKIA4G5VNWRYQU6AU5XS
+        accessKeyRef: null
+        secretKeyRef: AWS_Secret_Access_Key
+    delegateSelectors:
+    - docker-delegate
