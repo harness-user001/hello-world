@@ -1,0 +1,14 @@
+inputSet:
+  identifier: "branch"
+  name: "branch"
+  orgIdentifier: "HarnessOrg001"
+  projectIdentifier: "HarnessOrg001Proj001"
+  pipeline:
+    identifier: "clonebuildpublish"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "branch"
+            spec:
+              branch: "test"
