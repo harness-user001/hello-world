@@ -1,0 +1,18 @@
+connector:
+  name: DockerHub-Connector
+  identifier: DockerHubConnector
+  description: ""
+  orgIdentifier: HarnessOrg001
+  projectIdentifier: HarnessOrg001Proj001
+  type: DockerRegistry
+  spec:
+    dockerRegistryUrl: https://index.docker.io/v2/
+    providerType: DockerHub
+    auth:
+      type: UsernamePassword
+      spec:
+        username: harnesstest
+        usernameRef: null
+        passwordRef: dockerhub_creds_token
+    delegateSelectors:
+    - docker-delegate
