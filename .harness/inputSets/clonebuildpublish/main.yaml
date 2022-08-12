@@ -1,5 +1,8 @@
 inputSet:
   identifier: "main"
+  name: "Branch"
+  orgIdentifier: "HarnessOrg001"
+  projectIdentifier: "HarnessOrg001Proj001"
   pipeline:
     identifier: "clonebuildpublish"
     properties:
@@ -9,6 +12,3 @@ inputSet:
             type: "branch"
             spec:
               branch: "main"
-  name: "main"
-  orgIdentifier: "HarnessOrg001"
-  projectIdentifier: "HarnessOrg001Proj001"
