@@ -1,15 +1,16 @@
 apiVersion: v1
 data:
-  index.html: |
-      <html>
-      <h1>Welcome</h1>
-      </br>
-      <h1>Hi! This is a configmap Index file </h1>
-      </html>
+  index-custom-html.conf: |
+    <!DOCTYPE html>
+    <html>
+    <body>
+    <iframe width="580" height="345" src="https://docs.harness.io/">
+    </iframe>
+    </body>
+    </html>
 kind: ConfigMap
 metadata:
-  name: index-html-configmap
-  namespace: default
+  name: index-cm
 ---
 apiVersion: v1
 kind: Service
@@ -47,9 +48,12 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - mountPath: /var/www/html/index.html
+        - mountPath: /var/www/html
           name: nginx-index-file
       volumes: 
       - name: nginx-index-file
         configMap:
-          name: index-html-configmap
+          name: index-cm
+          items:
+          - key: index-custom-html.conf
+            path: index.html
